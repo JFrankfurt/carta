@@ -8,10 +8,12 @@ const HomeRoot = styled.div`
   justify-content: space-around;
 `
 
+// I added some row styles here
 const Row = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 6px;
   width: 300px;
 `
 
@@ -26,6 +28,7 @@ const Select = ({ movies, selectMovie }) => (
   </select>
 )
 
+// Added headers
 const Table = ({ movies, removeMovie }) => (
   <>
     <Row>
@@ -76,12 +79,16 @@ export default class Home extends Component {
 
   render() {
     const { movies, selectedMovies } = this.state
-    const selectMovies = movies.filter(
-      movie => !selectedMovies.includes(movie.episode_id)
-    )
-    const tableMovies = movies.filter(movie =>
-      selectedMovies.includes(movie.episode_id)
-    )
+    // I modified this to remove the double filter
+    let selectMovies = []
+    let tableMovies = []
+    for (let movie of movies) {
+      if (!selectedMovies.includes(movie.episode_id)) {
+        selectMovies.push(movie)
+      } else {
+        tableMovies.push(movie)
+      }
+    }
     return (
       <HomeRoot>
         <Select movies={selectMovies} selectMovie={this.selectMovie} />
@@ -90,7 +97,3 @@ export default class Home extends Component {
     )
   }
 }
-
-// select component
-// table component
-// star wars api to

@@ -7,8 +7,3 @@
 //   }),
 //   body: JSON.stringify(data)
 // })
-
-// export const get = url => fetch(url, {
-//   method: 'GET',
-//   headers: new Headers({'Authorization': `Bearer ${localStorage.getItem('jwt')}`}),
-// })
